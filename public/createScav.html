@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="createScav.css">
+  </head>
+  <div id="myDIV" class="header">
+      <h2>My Scavenger Hunt</h2>
+      <button class="btn">Questions</button>
+      <button class="btn">Activities</button>
+      <button class="btn">Pictures</button>
+      <input type="text" id="myInput" placeholder="Tasks...">
+      <span onclick="newElement()" class="addBtn">Add</span>
+    </div>
+    
+    <ul id="myUL">
+      <li>Meet George</li>
+      <li>Run up a stair</li>
+      <li>Find the QR code</li>
+    </ul>
+
+    <button type="button" class="create" onclick="window.location.href = 'myScav.html';">Create</button>
+    <script src="createScav.js"></script>
+</html>
