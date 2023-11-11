@@ -50,6 +50,39 @@
     margin-left: 120px;
 }
 
+.tile-title{
+	font-size: 18px;
+	color: #fff;
+	position: absolute;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.tile-desc{
+	font-size: 16px;
+	color: #eee;
+	position: absolute;
+	margin-left: 10px;
+	margin-top: 50px;
+	margin-right: 120px;
+}
+
+.tile-rating{
+	font-size: 16px;
+	color: #eee;
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 870px;
+}
+
+.tile-date{
+	font-size: 16px;
+	color: #eee;
+	position: absolute;
+	margin-top: 150px;
+	margin-left: 810px;
+}
+
 .search-bar{
     width: 100%;
     max-width: 400px;
