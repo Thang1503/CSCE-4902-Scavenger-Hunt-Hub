@@ -14,10 +14,10 @@
 					<div class="caret"></div>
 				</div>
 				<ul class="selections">
-					<li class="active">A-Z</li>
-					<li>Z-A</li>
-					<li>Newest</li>
-					<li>Rating</li>
+					<li id="a-z"class="active">A-Z</li>
+					<li id="z-a">Z-A</li>
+					<li id="newest">Newest</li>
+					<li id="rating">Rating</li>
 				</ul>
 			</div>
 			<div class="dropdown">
@@ -26,30 +26,23 @@
 					<div class="caret"></div>
 				</div>
 				<ul class="selections">
-					<li class="active">Kid Friendly</li>
-					<li>18+</li>
-					<li>Work</li>
+					<li id="kid-friendly"class="active">Kid Friendly</li>
+					<li id="18+">18+</li>
+					<li id="work">Work</li>
 				</ul>
 			</div>
 		</div>
 
-		<div class="container">
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
-			<div class="tile"></div>
+		<div class="container" id="container">
 		</div>
 	
 		<div class="screen">
 		<div class="search-bar">
-			<input type="text" placeholder="Search for a scavenger hunt" name="q">
-			<button type="submit"><img src="Images/glass_icon.png"></button>
+			<input type="text" id="searchInput" placeholder="Search for a scavenger hunt" name="q">
+			<button type="submit" id="searchButton"><img src="Images/glass_icon.png"></button>
 		</div>
-		<button type="button" class="create">Create a hunt</button>
-		<button type="button" class="account"><img src="Images/account.png"></button>
+		<button type="button" class="create" onclick="window.location.href = 'createScav.html';">Create a hunt</button>
+		<button type="button" class="account" onclick="window.location.href = 'login.html';"><img src="Images/account.png"></button>
 		</div>
 		<script src="main.js"></script>
 	</body>
