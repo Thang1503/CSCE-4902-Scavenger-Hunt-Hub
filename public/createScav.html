@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="createScav.css">
   </head>
   <div id="myDIV" class="header">
-      <h2>My Scavenger Hunt</h2>
+      <h2 id="myHunt">My Scavenger Hunt</h2>
       <button class="btn">Questions</button>
       <button class="btn">Activities</button>
       <button class="btn">Pictures</button>
@@ -14,11 +14,49 @@
     </div>
     
     <ul id="myUL">
-      <li>Meet George</li>
       <li>Run up a stair</li>
-      <li>Find the QR code</li>
+      <li>Scan the QR Code</li>
+      <li>Take a Picture</li>
     </ul>
 
     <button type="button" class="create" onclick="window.location.href = 'myScav.html';">Create</button>
     <script src="createScav.js"></script>
+    <script>
+      const firebaseApp = firebase.initializeApp({
+        apiKey: "AIzaSyAN5-vaIFOwaz2ar8mFqfDeEGawJU_5OEo",
+        authDomain: "team-17-scavenger-hunt-hub.firebaseapp.com",
+        projectId: "team-17-scavenger-hunt-hub",
+        storageBucket: "team-17-scavenger-hunt-hub.appspot.com",
+        messagingSenderId: "313893582260",
+        appId: "1:313893582260:web:141161df49a4b48e06aee1",
+        measurementId: "G-7FMS2C0D22"
+      });
+
+      var database = firebase.database();
+      var scavRef = database.ref("scav");
+      var scavList = document.getElementById("myUL");
+      scavRef.on("my_scav", function(snapshot) {
+        // Handle the snapshot data
+        var tasks = snapshot.val();
+
+        // Now 'todos' contains your to-do list data
+        console.log(tasks);
+      });
+
+      scavRef.on("my_scav", function(snapshot) {
+        var tasks = snapshot.val();
+
+        // Clear previous data
+        scavList.innerHTML = "";
+
+        // Iterate through the todos and append them to the list
+        for (var key in tasks) {
+          if (tasks.hasOwnProperty(key)) {
+              var taskItem = document.createElement("li");
+              taskItem.appendChild(document.createTextNode(tasks[key]));
+              scavList.appendChild(taskItem);
+          }
+        }
+      });
+    </script>
 </html>

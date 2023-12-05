@@ -17,6 +17,7 @@ const register = () => {
 
     auth.createUserWithEmailAndPassword(email, password)
     .then((res) => {
+        alert("Registration success!")
         console.log(res.user)
     })
     .catch((err) => {
@@ -32,6 +33,7 @@ const login = () => {
 
     auth.signInWithEmailAndPassword(email, password)
     .then((res) => {
+        alert("Login success!")
         console.log(res.user)
     })
     .catch((err) => {

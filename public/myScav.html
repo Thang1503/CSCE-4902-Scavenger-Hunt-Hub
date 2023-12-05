@@ -8,13 +8,44 @@
       <h2>My Scavenger Hunt</h2>
     </div>
     
-    <ul id="myUL">
-      <li>Walk 10 steps</li>
-      <li>Do 10 push ups</li>
-      <li>Meet George</li>
-      <li>Run up a stair</li>
-      <li>Find the QR code</li>
-    </ul>
+    <ul id="myUL"></ul>
 
-    <script src="myScav.js"></script>
+    <script>
+      const firebaseApp = firebase.initializeApp({
+        apiKey: "AIzaSyAN5-vaIFOwaz2ar8mFqfDeEGawJU_5OEo",
+        authDomain: "team-17-scavenger-hunt-hub.firebaseapp.com",
+        projectId: "team-17-scavenger-hunt-hub",
+        storageBucket: "team-17-scavenger-hunt-hub.appspot.com",
+        messagingSenderId: "313893582260",
+        appId: "1:313893582260:web:141161df49a4b48e06aee1",
+        measurementId: "G-7FMS2C0D22"
+      });
+
+      var database = firebase.database();
+      var scavRef = database.ref("scav");
+      var scavList = document.getElementById("myUL");
+      onValue(scavRef, (snapshot) => {
+        // Handle the snapshot data
+        var tasks = snapshot.val();
+
+        // Now 'todos' contains your to-do list data
+        console.log(tasks);
+      });
+
+      onValue(scavRef, (snapshot) => {
+        var tasks = snapshot.val();
+
+        // Clear previous data
+        scavList.innerHTML = "";
+
+        // Iterate through the todos and append them to the list
+        for (var key in tasks) {
+          if (tasks.hasOwnProperty(key)) {
+              var taskItem = document.createElement("li");
+              taskItem.appendChild(document.createTextNode(tasks[key]));
+              scavList.appendChild(taskItem);
+          }
+        }
+      });
+    </script>
 </html>
