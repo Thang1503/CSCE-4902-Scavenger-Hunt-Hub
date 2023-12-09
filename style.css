@@ -28,7 +28,7 @@
 }
 
 .container{
-    width: 1150px;
+    width: 75%;
     height: 670px;
     background-color: rgba(255, 255, 255, 0);
     position: fixed;
@@ -40,14 +40,47 @@
 }
 
 .tile{
-    width: 900px;
+    width: 80%;
     height: 175px;
     background-color: rgb(79, 112, 142);
     margin-bottom: 25px;
     margin-top: 5px;
     border-radius: 10px;
     cursor: pointer;
-    margin-left: 120px;
+    margin-left: 10%;
+}
+
+.tile-title{
+	font-size: 18px;
+	color: #fff;
+	position: absolute;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.tile-desc{
+	font-size: 16px;
+	color: #eee;
+	position: absolute;
+	margin-left: 10px;
+	margin-top: 50px;
+	margin-right: 120px;
+}
+
+.tile-rating{
+	font-size: 16px;
+	color: #eee;
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 77%;
+}
+
+.tile-date{
+	font-size: 16px;
+	color: #eee;
+	position: absolute;
+	margin-top: 150px;
+	margin-left: 72%;
 }
 
 .search-bar{
@@ -132,7 +165,7 @@
 }
 
 .dropdown{
-    min-width: 15em;
+    width: 100%;
     position: relative;
     margin-top: 25px;
 }
