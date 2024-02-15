@@ -1,8 +1,8 @@
 var huntList = [
-	{ title: "Example1", desc: "Example1 description is right here", rating: 4.0, date: "04/05/2020" },
-	{ title: "Example2", desc: "Example2 description is right here", rating: 7.0, date: "10/22/2023" },
-	{ title: "Example3", desc: "Example3 description is right here", rating: 9.0, date: "06/13/2017" },
-	{ title: "Example4", desc: "Example4 description is right here", rating: 6.0, date: "12/14/2019" }
+	{ title: "Example1", desc: "Example1 description is right here", rating: 4.0, date: "04/05/2020", filter: "kid-friendly" },
+	{ title: "Example2", desc: "Example2 description is right here", rating: 7.0, date: "10/22/2023", filter: "18+" },
+	{ title: "Example3", desc: "Example3 description is right here", rating: 9.0, date: "06/13/2017", filter: "kid-friendly"},
+	{ title: "Example4", desc: "Example4 description is right here", rating: 6.0, date: "12/14/2019", filter: "work" }
 ];
 
 var inputValue = "";
@@ -49,6 +49,17 @@ searchButton.addEventListener('click', function() {
 
 function reSort() {
 	document.querySelectorAll('.tile').forEach(e => e.remove());
+	var filter = "";
+	
+	if (document.getElementById("kid-friendly").classList.contains('active')) {
+		filter = "kid-friendly";
+	}
+	else if (document.getElementById("18+").classList.contains('active')) {
+		filter = "18+";
+	}
+	else if (document.getElementById("work").classList.contains('active')) {
+		filter = "work";
+	}
 	
 	if (document.getElementById("z-a").classList.contains('active')) {
 		huntList.sort(function(a, b) {
@@ -101,7 +112,7 @@ function reSort() {
 	
 	var container = document.getElementById("container");
 	for (var i = 0; i < huntList.length; i++) {
-		if (!(inputValue.localeCompare(huntList[i].title)) || !inputValue) {
+		if ((!(inputValue.localeCompare(huntList[i].title)) || !inputValue) && (!(filter.localeCompare(huntList[i].filter)) || !filter)) {
 			var tile = document.createElement("div");
 			var textnode = document.createTextNode(huntList[i].title);
 			var textnode2 = document.createTextNode(huntList[i].desc);
