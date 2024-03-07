@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.screen{
+    width: 100%;
+    min-height: 100vh;
+	padding: 1%;
+    background: linear-gradient(rgba(70, 70, 70, 0.9),rgba(70,70,70,0.9));
+}
+
+.title{
+	color:#fff;
+	font-size: 35px;
+	margin-bottom: 40px;
+}
+
+.header{
+	color: #fff;
+	font-size: 26px;
+	margin-bottom: 18px;
+}
+
+.body-text{
+	color: #fff;
+	margin-bottom: 18px;
+}
+
+.tasklist{
+	color: #fff;
+	margin-left: 20px;
+}

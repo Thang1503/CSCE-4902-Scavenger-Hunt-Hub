@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Hunt Details</title>
+		<link rel="stylesheet" href="huntDetails.css">
+	</head>
+	<body>
+		<div class="screen">
+		<div class="title" id="title"></div>
+		<div class="header" id="description">Description</div>
+		<div class="body-text" id="description-text"></div>
+		<div class="header" id="tasks">Tasks</div>
+		<ul class="tasklist" id="tasklist">
+		</ul>
+		<script type="module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+		  
+			const firebaseConfig = {
+			  apiKey: "AIzaSyAN5-vaIFOwaz2ar8mFqfDeEGawJU_5OEo",
+			  authDomain: "team-17-scavenger-hunt-hub.firebaseapp.com",
+			  databaseURL: "https://team-17-scavenger-hunt-hub-default-rtdb.firebaseio.com",
+			  projectId: "team-17-scavenger-hunt-hub",
+			  storageBucket: "team-17-scavenger-hunt-hub.appspot.com",
+			  messagingSenderId: "313893582260",
+			  appId: "1:313893582260:web:141161df49a4b48e06aee1",
+			  measurementId: "G-7FMS2C0D22"
+			};
+		  
+			const app = initializeApp(firebaseConfig);
+
+			import {getDatabase, ref, child, get, set, update, remove, onValue} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+			const db = getDatabase();
+			
+			var idNum = localStorage.getItem('id')
+			console.log(localStorage.getItem('id'));
+			
+			var titleInp = "";
+			var descInp = "";
+			var tasksInp = [];
+			
+			function GetData(){
+				const dbRef = ref(db, 'hunts/');
+
+				onValue(dbRef, (snapshot) => {
+					snapshot.forEach((childSnapshot) => {
+						if (childSnapshot.val().id == idNum) {
+							titleInp = childSnapshot.val().title;
+							descInp = childSnapshot.val().desc;
+							tasksInp = childSnapshot.val().tasks;
+							var title = document.getElementById("title");
+							title.textContent = titleInp;
+							var desc = document.getElementById("description-text");
+							desc.textContent = descInp;
+							var tasks = document.getElementById("tasklist");
+							for (var i = 0; i < tasksInp.length; i++) {
+								var newTask = document.createElement("li");
+								newTask.textContent = tasksInp[i];
+								tasks.appendChild(newTask);
+							}
+						}
+					});
+				});
+			}
+			
+			GetData();
+			
+		</script>
+		
+	</body>
+</html>

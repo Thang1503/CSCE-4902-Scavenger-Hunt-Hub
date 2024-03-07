@@ -40,10 +40,10 @@
 		<div class="screen">
 		<div class="search-bar">
 			<input type="text" id="searchInput" placeholder="Search for a scavenger hunt" name="q">
-			<button type="submit" id="searchButton"><img src="Images/glass_icon.png"></button>
+			<button type="submit" id="searchButton"><img src="glass_icon.png"></button>
 		</div>
 		<button type="button" class="create" onclick="window.location.href = 'createScav.html';">Create a hunt</button>
-		<button type="button" class="account" onclick="window.location.href = 'login.html';"><img src="Images/account.png"></button>
+		<button type="button" class="account" onclick="window.location.href = 'login.html';"><img src="account.png"></button>
 		</div>
 		<script type="module">
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -65,6 +65,7 @@
 
 			const db = getDatabase();
 
+			var idInp = 0;
 			var titleInp = "";
 			var descInp = "";
 			var ratingInp = 0.0;
@@ -82,14 +83,16 @@
 
 				onValue(dbRef, (snapshot) => {
 					snapshot.forEach((childSnapshot) => {
+						idInp = childSnapshot.val().id;
 						titleInp = childSnapshot.val().title;
 						descInp = childSnapshot.val().desc;
 						ratingInp = childSnapshot.val().rating;
 						dateInp = childSnapshot.val().date;
 						filterInp = childSnapshot.val().filter;
-						huntList.push({ title: titleInp, desc: descInp, rating: ratingInp, date: dateInp, filter: filterInp });
+						huntList.push({ id: idInp, title: titleInp, desc: descInp, rating: ratingInp, date: dateInp, filter: filterInp });
 					});
 					reSort();
+					console.log(huntList);
 				});
 			}
 
@@ -227,6 +230,13 @@
 						tile.appendChild(description);
 						tile.appendChild(rating);
 						tile.appendChild(date);
+						tile.setAttribute("id", huntList[i].id);
+						(function(tile) {
+							tile.addEventListener('click', (e) => {
+								localStorage.setItem('id', tile.getAttribute("id"));
+								window.location.href = 'huntDetails.html';
+							});
+						})(tile);
 					}
 				}
 			}
