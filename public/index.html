@@ -5,8 +5,55 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Scavenger Hunt Hub</title>
 		<link rel="stylesheet" href="style.css">
+
+
+		
+		<title>Homepage</title>
+    <style>
+        /* Style for the button */
+        .logo-button {
+            position: fixed;
+            top: 10px; /* Adjust as needed */
+            left: 300px; /* Adjust as needed */
+		
+            background-color: #ddd0d0;
+            border: none;
+            padding: 10px;
+            border-radius: 10%;
+            box-shadow: 0 2px 4px rgba(189, 34, 34, 0.1);
+            cursor: pointer;
+			
+        }
+
+        /* Style for the logo image */
+        .logo-button img {
+            width: 30px; /* Adjust as needed */
+            height: auto;
+            display:block;
+			
+        }
+    </style>
+
+		
+				
+
 	</head>
 	<body>
+
+		 
+		<button class="logo-button" onclick="window.location.href = 'index.html';">
+			<img src="logo.jpg" alt="Logo">
+		</button>
+
+		
+
+
+
+
+		
+		 <!-- Menu -->
+
+
 		<div class="menu">
 			<div class="dropdown">
 				<div class="select">
@@ -38,12 +85,13 @@
 		</div>
 	
 		<div class="screen">
+	
 		<div class="search-bar">
 			<input type="text" id="searchInput" placeholder="Search for a scavenger hunt" name="q">
-			<button type="submit" id="searchButton"><img src="Images/glass_icon.png"></button>
+			<button type="submit" id="searchButton"><img src="th.jpg"></button>
 		</div>
 		<button type="button" class="create" onclick="window.location.href = 'createScav.html';">Create a hunt</button>
-		<button type="button" class="account" onclick="window.location.href = 'login.html';"><img src="Images/account.png"></button>
+		<button type="button" class="account" onclick="window.location.href = 'login.html';"><img src="account.png"></button>
 		</div>
 		<script type="module">
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -231,5 +279,12 @@
 				}
 			}
 		</script>
+
+
+
+
+
+
+
 	</body>
 </html>

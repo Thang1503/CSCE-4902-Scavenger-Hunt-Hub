@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing:border-box;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -9,42 +9,49 @@
     width: 100%;
     min-height: 100vh;
     padding: 5%;
-    background-image: linear-gradient(rgba(50, 50, 50, 0.9),rgba(50,50,50,0.9)),url(background.jpg);
+    background-image:linear-gradient(rgba(50, 50, 50, 0.9),rgba(50,50,50,0.9)),url(ScavengerHunt.png);
     background-position: center;
     background-size: cover;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+   
 }
 
 .menu{
-    width: 25%;
+    width: 23%;
     min-height: 100vh;
     padding: 5%;
     background-color: rgba(255, 255, 255, 0.2);
     position: fixed;
     left: 0;
     backdrop-filter: blur(5px);
+
+
 }
 
+
+
+
+
 .container{
-    width: 75%;
+    width: 70%;
     height: 670px;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(184, 33, 33, 0);
     position: fixed;
-    top: 70px;
+    top: 100px;
     right: 0px;
-    align-items: flex-start;
+    align-items:flex-start;
     justify-content: center;
-    overflow-y: scroll;
+    overflow-y:scroll;
 }
 
 .tile{
     width: 80%;
     height: 175px;
     background-color: rgb(79, 112, 142);
-    margin-bottom: 25px;
-    margin-top: 5px;
+    margin-bottom: 55px;
+    margin-top: 50px;
     border-radius: 10px;
     cursor: pointer;
     margin-left: 10%;
@@ -68,6 +75,7 @@
 }
 
 .tile-rating{
+    
 	font-size: 16px;
 	color: #eee;
 	position: absolute;
@@ -75,12 +83,15 @@
 	margin-left: 77%;
 }
 
+
+
+
 .tile-date{
 	font-size: 16px;
 	color: #eee;
 	position: absolute;
 	margin-top: 150px;
-	margin-left: 72%;
+	margin-left: 70%;
 }
 
 .search-bar{
@@ -89,12 +100,13 @@
     position: fixed;
     top: 10px;
     right: 70px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(235, 231, 231, 0.89);
     display: flex;
     align-items: center;
     border-radius: 30px;
     padding: 5px 20px;
     backdrop-filter: blur(5px);
+    
 }
 
 .search-bar input{
@@ -104,11 +116,13 @@
     outline: none;
     padding: 12px 15px;
     font-size: 16px;
-    color: #ddd;
+    color: #161515;
 }
 
 .search-bar button img{
-    width: 25px;
+    width: 40px;
+    opacity: 0.60;
+    
 }
 
 .search-bar button{
@@ -116,7 +130,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(228, 222, 222, 0.836);
     cursor: pointer;
 }
 
@@ -125,7 +139,7 @@
     height: 50px;
     width: 125px;
     padding: 0;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(231, 226, 226, 0.897);
     align-items: center;
     justify-content: center;
     border: none;
@@ -134,7 +148,7 @@
     overflow: hidden;
     font-size: 16px;
     cursor: pointer;
-    color: #ddd;
+    color: #7a7474;
     position: fixed;
     top: 10px;
     right: 480px;
@@ -175,12 +189,12 @@
 }
 
 .select {
-    background: #2a2f3b;
+    background: #3a4050;
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px #2a2f3b solid;
+    border: 2px #6c717c solid;
     border-radius: 0.5em;
     padding: 1em;
     cursor: pointer;
@@ -247,3 +261,5 @@
     display: block;
     opacity: 1;
 }
+
+
