@@ -17,7 +17,7 @@
 		<ul id="myUL">
 		</ul>
 
-		<button type="button" class="create" id="createButton">Create</button>
+		<button type="button" class="create" id="createButton" disabled="True">Create</button>
 		</div>
 	</body>
     <script type="module">
@@ -54,6 +54,11 @@
 		var rating = 0;
 		var filter = "kid-friendly";
 		
+		titleInput.oninput = checkTitle;
+		function checkTitle() {
+			createButton.disabled = !titleInput.value.trim();
+		}
+
 		createButton.addEventListener('click', function() {
 			title = titleInput.value;
 			desc = descInput.value;
@@ -99,6 +104,9 @@
 				date : date,
 				filter : filter,
 				tasks : taskList
+			})
+			.then(() => {
+				window.location.href = "index.html";
 			})
 		}
 		
