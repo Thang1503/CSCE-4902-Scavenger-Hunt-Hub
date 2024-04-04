@@ -1,7 +1,17 @@
 /* Include the padding and border in an element's total width and height */
-* {
+*{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-  }
+    font-family: 'Poppins', sans-serif;
+}
+  
+  .screen{
+    width: 100%;
+    min-height: 100vh;
+	padding: 1%;
+    background-color: gray;
+}
   
   /* Remove margins and padding from the list */
   ul {
@@ -64,11 +74,33 @@
   }
   
   /* Style the input */
-  input {
+  .title {
+    margin: 0;
+	margin-bottom: 5px;
+    border: none;
+    border-radius: 25px;
+    width: 55%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+  }
+  
+  .desc {
+    margin: 0;
+	margin-bottom: 25px;
+    border: none;
+    border-radius: 25px;
+    width: 55%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+  }
+  
+  .task {
     margin: 0;
     border: none;
-    border-radius: 0;
-    width: 75%;
+    border-radius: 25px;
+    width: 55%;
     padding: 10px;
     float: left;
     font-size: 16px;

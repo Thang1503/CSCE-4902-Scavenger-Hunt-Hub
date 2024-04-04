@@ -41,27 +41,26 @@
 			var descInp = "";
 			var tasksInp = [];
 			
-			function GetData(){
+			async function GetData(){
 				const dbRef = ref(db, 'hunts/');
+				const snapshot = await get(dbRef);
 
-				onValue(dbRef, (snapshot) => {
-					snapshot.forEach((childSnapshot) => {
-						if (childSnapshot.val().id == idNum) {
-							titleInp = childSnapshot.val().title;
-							descInp = childSnapshot.val().desc;
-							tasksInp = childSnapshot.val().tasks;
-							var title = document.getElementById("title");
-							title.textContent = titleInp;
-							var desc = document.getElementById("description-text");
-							desc.textContent = descInp;
-							var tasks = document.getElementById("tasklist");
-							for (var i = 0; i < tasksInp.length; i++) {
-								var newTask = document.createElement("li");
-								newTask.textContent = tasksInp[i];
-								tasks.appendChild(newTask);
-							}
+				snapshot.forEach((childSnapshot) => {
+					if (childSnapshot.val().id == idNum) {
+						titleInp = childSnapshot.val().title;
+						descInp = childSnapshot.val().desc;
+						tasksInp = childSnapshot.val().tasks;
+						var title = document.getElementById("title");
+						title.textContent = titleInp;
+						var desc = document.getElementById("description-text");
+						desc.textContent = descInp;
+						var tasks = document.getElementById("tasklist");
+						for (var i = 0; i < tasksInp.length; i++) {
+							var newTask = document.createElement("li");
+							newTask.textContent = tasksInp[i];
+							tasks.appendChild(newTask);
 						}
-					});
+					}
 				});
 			}
 			
