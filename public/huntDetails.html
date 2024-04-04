@@ -12,6 +12,10 @@
 		<div class="header" id="description">Description</div>
 		<div class="body-text" id="description-text"></div>
 		<div class="header" id="tasks">Tasks</div>
+		<div class="actions">
+			<button id="deleteButton">Delete Hunt</button>
+		</div>
+		
 		<ul class="tasklist" id="tasklist">
 		</ul>
 		<script type="module">
@@ -63,6 +67,27 @@
 					}
 				});
 			}
+
+			document.getElementById("deleteButton").addEventListener("click", async () => {
+				const huntRef = ref(db, 'hunts/');
+				const snapshot = await get(huntRef);
+
+				snapshot.forEach((childSnapshot) => {
+					if (childSnapshot.val().id == idNum) {
+						const huntKey = childSnapshot.key;
+						remove(ref(db, `hunts/${huntKey}`))
+						.then(() => {
+							// Delete successful, you can add further actions if needed
+							console.log("Hunt deleted successfully");
+							window.location.href = "index.html";
+						})
+						.catch((error) => {
+							console.error("Error deleting hunt: ", error);
+						});
+					}
+				});
+			});
+
 			
 			GetData();
 			
