@@ -1,6 +1,9 @@
 /* Include the padding and border in an element's total width and height */
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
   }
   
   /* Remove margins and padding from the list */
@@ -75,6 +78,7 @@
     padding: 30px 40px;
     color: white;
     text-align: center;
+	font-size: 30px;
   }
   
   /* Clear floats after the header */

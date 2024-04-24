@@ -4,17 +4,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="myScav.css">
   </head>
-  <div id="myDIV" class="header">
-      <h2>My Scavenger Hunt</h2>
-    </div>
+  <div id="title" class="header"></div>
     
-    <ul id="myUL">
-      <li>Walk 10 steps</li>
-      <li>Do 10 push ups</li>
-      <li>Meet George</li>
-      <li>Run up a stair</li>
-      <li>Find the QR code</li>
+    <ul id="tasklist">
     </ul>
+	
+	<button id="homebutton">Back to Hunts</button>
 
-    <script src="myScav.js"></script>
+    <script type="module">
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+		  
+		const firebaseConfig = {
+		  apiKey: "AIzaSyAN5-vaIFOwaz2ar8mFqfDeEGawJU_5OEo",
+		  authDomain: "team-17-scavenger-hunt-hub.firebaseapp.com",
+		  databaseURL: "https://team-17-scavenger-hunt-hub-default-rtdb.firebaseio.com",
+		  projectId: "team-17-scavenger-hunt-hub",
+		  storageBucket: "team-17-scavenger-hunt-hub.appspot.com",
+		  messagingSenderId: "313893582260",
+		  appId: "1:313893582260:web:141161df49a4b48e06aee1",
+		  measurementId: "G-7FMS2C0D22"
+		};
+	  
+		const app = initializeApp(firebaseConfig);
+
+		import {getDatabase, ref, child, get, set, update, remove, onValue} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+		const db = getDatabase();
+		
+		var idNum = localStorage.getItem('id');
+		
+		var titleInp = "";
+		var tasksInp = [];
+		
+		async function GetData(){
+			const dbRef = ref(db, 'hunts/');
+			const snapshot = await get(dbRef);
+
+			snapshot.forEach((childSnapshot) => {
+				if (childSnapshot.val().id == idNum) {
+					titleInp = childSnapshot.val().title;
+					tasksInp = childSnapshot.val().tasks;
+					var title = document.getElementById("title");
+					title.innerHTML = titleInp;
+					var tasks = document.getElementById("tasklist");
+					for (var i = 0; i < tasksInp.length; i++) {
+						var newTask = document.createElement("li");
+						newTask.textContent = tasksInp[i];
+						tasks.appendChild(newTask);
+					}
+				}
+			});
+		}
+		
+		document.getElementById("homebutton").addEventListener('click', () => {
+				window.location.href = 'index.html';
+		})
+		
+		// Add a "checked" symbol when clicking on a list item
+		var list = document.querySelector('ul');
+		list.addEventListener('click', function(ev) {
+		  if (ev.target.tagName === 'LI') {
+			ev.target.classList.toggle('checked');
+		  }
+		}, false);
+		
+		GetData();
+	</script>
 </html>

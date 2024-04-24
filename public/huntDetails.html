@@ -12,12 +12,11 @@
 		<div class="header" id="description">Description</div>
 		<div class="body-text" id="description-text"></div>
 		<div class="header" id="tasks">Tasks</div>
-		<div class="actions">
-			<button id="deleteButton">Delete Hunt</button>
-		</div>
-		
 		<ul class="tasklist" id="tasklist">
 		</ul>
+		<div class="actions">
+			<button id="playButton">Play Hunt</button>
+		</div>
 		<script type="module">
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 		  
@@ -67,8 +66,13 @@
 					}
 				});
 			}
+			
+			document.getElementById("playButton").addEventListener('click', () => {
+				localStorage.setItem('id', idNum);
+				window.location.href = 'myScav.html';
+			});
 
-			document.getElementById("deleteButton").addEventListener("click", async () => {
+			/*document.getElementById("deleteButton").addEventListener("click", async () => {
 				const huntRef = ref(db, 'hunts/');
 				const snapshot = await get(huntRef);
 
@@ -86,7 +90,7 @@
 						});
 					}
 				});
-			});
+			});*/
 
 			
 			GetData();
