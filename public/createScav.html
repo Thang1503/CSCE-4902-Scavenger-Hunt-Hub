@@ -49,7 +49,7 @@
 		
 		var title = "";
 		var desc = "";
-		var idNum = 100001;
+		var idNum = 100000;
 		var date = "";
 		var rating = 0;
 		var filter = "kid-friendly";
@@ -88,14 +88,16 @@
 			const snapshot = await get(dbRef);
 
 			snapshot.forEach((childSnapshot) => {
-				if (childSnapshot.val().id == idNum)
-					idNum++;
+				if (childSnapshot.val().id > idNum)
+					idNum = childSnapshot.val().id;
 			});		
-			save();
+			await save();
 		}
 		
-		function save() {
-			set(ref(db, 'hunts/' + title), {
+		async function save() {
+			idNum++;
+			
+			await set(ref(db, 'hunts/' + title), {
 				title : title,
 				desc : desc,
 				id : idNum,
