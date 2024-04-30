@@ -70,12 +70,11 @@
 			date = month + '/' + day + '/' + year;
 			
 			tasks.querySelectorAll("li").forEach(function(li) {
-				taskList.push(li.textContent);
+				var taskContent = li.firstChild.textContent.trim();
+				var img = li.querySelector("img");
+				var imgSrc = img ? img.src : null; // Get image data URL if available
+				taskList.push({ content: taskContent, image: imgSrc });
 			});
-			
-			for (let i = 0; i < taskList.length; i++) {
-				taskList[i] = taskList[i].slice(0, -1);
-			}
 			
 			GetData();
 		});
@@ -108,6 +107,18 @@
 			.then(() => {
 				window.location.href = "index.html";
 			})
+
+			taskList.forEach((task, index) => {
+				const img = document.getElementById(`taskImage_${index}`);
+				if (img) {
+					const taskImgRef = ref(db, `hunts/title/tasks/${index}/image`);
+					set(taskImgRef, img.src).then(() => {
+						console.log(`Image for task ${index} saved successfully!`);
+					}).catch((error) => {
+						console.error(`Error saving image for task ${index}: `, error);
+					});
+				}
+			});
 		}
 		
 		// Create a "close" button and append it to each list item
@@ -131,31 +142,45 @@
 		  }
 		}
 
-		// Create a new list item when clicking on the "Add" button
 		function newElement() {
-		  var li = document.createElement("li");
-		  var inputValue = document.getElementById("myInput").value;
-		  var t = document.createTextNode(inputValue);
-		  li.appendChild(t);
-		  if (inputValue === '') {
-			alert("You must write something!");
-		  } else {
-			document.getElementById("myUL").appendChild(li);
-		  }
-		  document.getElementById("myInput").value = "";
-
-		  var span = document.createElement("SPAN");
-		  var txt = document.createTextNode("\u00D7");
-		  span.className = "close";
-		  span.appendChild(txt);
-		  li.appendChild(span);
-
-		  for (i = 0; i < close.length; i++) {
-			close[i].onclick = function() {
-			  var div = this.parentElement;
-			  div.style.display = "none";
+			var li = document.createElement("li");
+			var inputValue = document.getElementById("myInput").value.trim();
+			var t = document.createTextNode(inputValue);
+			li.appendChild(t);
+			if (inputValue === '') {
+				alert("You must write something!");
+			} else {
+				// Input field for image upload
+				var fileInput = document.createElement("input");
+				fileInput.type = "file";
+				fileInput.accept = "image/*"; // Allow only image files
+				fileInput.addEventListener("change", function(event) {
+				var file = event.target.files[0];
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var img = document.createElement("img");
+					img.src = e.target.result;
+					img.style.maxWidth = "100px"; // Adjust the image size as needed
+					li.appendChild(img);
+				};
+				reader.readAsDataURL(file);
+				});
+				li.appendChild(fileInput);
+				document.getElementById("myUL").appendChild(li);
 			}
-		  }
+			document.getElementById("myInput").value = "";
+
+			var span = document.createElement("SPAN");
+			var txt = document.createTextNode("\u00D7");
+			span.className = "close";
+			span.appendChild(txt);
+			li.appendChild(span);
+
+			span.onclick = function() {
+				var div = this.parentElement;
+				div.style.display = "none";
+			};
 		}
+
 	</script>
 </html>

@@ -48,8 +48,15 @@
 					title.innerHTML = titleInp;
 					var tasks = document.getElementById("tasklist");
 					for (var i = 0; i < tasksInp.length; i++) {
+						var taskItem = tasksInp[i];
 						var newTask = document.createElement("li");
-						newTask.textContent = tasksInp[i];
+						newTask.textContent = taskItem.content; // Assuming content is stored as text
+						if (taskItem.image) { // Check if task has an image URL
+							var taskImage = document.createElement("img");
+							taskImage.src = taskItem.image;
+							taskImage.style.maxWidth = "100px";
+							newTask.appendChild(taskImage);
+						}
 						tasks.appendChild(newTask);
 					}
 				}
@@ -59,6 +66,7 @@
 		document.getElementById("homebutton").addEventListener('click', () => {
 				window.location.href = 'index.html';
 		})
+
 		
 		// Add a "checked" symbol when clicking on a list item
 		var list = document.querySelector('ul');
