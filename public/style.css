@@ -1,104 +1,3 @@
-/* bikesh  */
-.slide{
-    height: 100%;
-    width: 180px;
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.3);
-    transition: 0.5s ease;
-    transform: translateX(0px);
-}
-h1{
-    color:lightcoral;
-    font-weight:800;
-    text-align: right;
-    padding: 10px 0;
-    padding-right: 30px;
-    pointer-events: none;
-}
-
-ul li{
-    list-style: none;
-}
-ul li a{
-    color: white;
-    font-weight: 500;
-    padding: 5px 0;
-    display: block;
-    text-transform: capitalize;
-    text-decoration: none;
-    transition: 0.2s ease-out;
-
-}
-ul li a i{
-width: 40px;
-text-align:center ;
-}
-input{
-display: none;
-visibility: hidden;
--webkit-appearance: none;
-
-
-}
-.toggle{
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    top: 20px;
-    left:15px;
-    background-color: red;
-    z-index: 1;
-    cursor: pointer;
-    border-radius: 2px;
-    background-color: white;
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.3) ;
-}
-.toggle .common {
-    position: absolute;
-    height: 2px;
-    width: 20px;
-    background-color:lightcoral;
-    border-radius: 50px;
-    transition: 0.3s ease;
-}
-.toggle .top_line{
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-.toggle .middle_line{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-.toggle .bottom_line{
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-input:checked ~ .toggle .top_line {
-    left: 2px;
-    top:14px;
-    width: 25px;
-    transform: rotate(-45deg);
-
-}
-input:checked ~ .toggle .bottom_line {
-    left: 2px;
-    top:14px;
-    width: 25px;
-    transform: rotate(-45deg);
-
-}
-input:checked ~ .toggle .middle_line {
-    opacity: 0;
-    transform: translateX(20px);
-
-}
-input:checked~ .slide {
-    transform: translateX(0);
-}
-/* bikesh */
 *{
     margin: 0;
     padding: 0;
@@ -119,28 +18,18 @@ input:checked~ .slide {
    
 }
 
-
-
-.menu {
-    width: 10%;
-    min-height: 10vh;     
+.menu{
+    width: 30%;
+    min-height: 100vh;
     padding: 5%;
+	padding-top: 100px;
     background-color: rgba(255, 255, 255, 0.2);
     position: fixed;
-    bottom: 0; /* Changed from 'top: 0;' */
     left: 0;
     backdrop-filter: blur(5px);
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 10px;
+
 }
-
-
-
-
 
 .container{
     width: 70%;
@@ -163,6 +52,8 @@ input:checked~ .slide {
     border-radius: 10px;
     cursor: pointer;
     margin-left: 10%;
+	position: relative;
+	overflow: hidden;
 }
 
 .tile-title{
@@ -188,23 +79,20 @@ input:checked~ .slide {
 	color: #eee;
 	position: absolute;
 	margin-top: 10px;
-	margin-left: 77%;
+	right: 10px;
 }
-
-
-
 
 .tile-date{
 	font-size: 16px;
 	color: #eee;
 	position: absolute;
 	margin-top: 150px;
-	margin-left: 70%;
+	right: 10px;
+	
 }
 
 .search-bar{
-    width: 100%;
-    max-width: 400px;
+    width: 50%;
     position: fixed;
     top: 10px;
     right: 70px;
@@ -222,7 +110,6 @@ input:checked~ .slide {
     flex: 1;
     border: 0;
     outline: none;
-    padding: 12px 15px;
     font-size: 16px;
     color: #161515;
 }
@@ -259,7 +146,7 @@ input:checked~ .slide {
     color: #7a7474;
     position: fixed;
     top: 10px;
-    right: 480px;
+	margin-right: 280px;
     backdrop-filter: blur(5px);
 }
 
@@ -283,7 +170,7 @@ input:checked~ .slide {
 }
 
 .account img{
-    width: 35px;
+    width: 80%;
 }
 
 .dropdown{
