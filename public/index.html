@@ -126,22 +126,21 @@
 			var searchInput = document.getElementById('searchInput');
 			var searchButton = document.getElementById('searchButton');
 
-			function GetData(){
+			async function GetData(){
 				const dbRef = ref(db, 'hunts/');
+				const snapshot = await get(dbRef);
 
-				onValue(dbRef, (snapshot) => {
-					snapshot.forEach((childSnapshot) => {
-						idInp = childSnapshot.val().id;
-						titleInp = childSnapshot.val().title;
-						descInp = childSnapshot.val().desc;
-						ratingInp = childSnapshot.val().rating;
-						dateInp = childSnapshot.val().date;
-						filterInp = childSnapshot.val().filter;
-						huntList.push({ id: idInp, title: titleInp, desc: descInp, rating: ratingInp, date: dateInp, filter: filterInp });
-					});
-					reSort();
-					console.log(huntList);
+				snapshot.forEach((childSnapshot) => {
+					idInp = childSnapshot.val().id;
+					titleInp = childSnapshot.val().title;
+					descInp = childSnapshot.val().desc;
+					ratingInp = childSnapshot.val().rating;
+					dateInp = childSnapshot.val().date;
+					filterInp = childSnapshot.val().filter;
+					huntList.push({ id: idInp, title: titleInp, desc: descInp, rating: ratingInp, date: dateInp, filter: filterInp });
 				});
+				await reSort();
+				console.log(huntList);
 			}
 
 			GetData();
