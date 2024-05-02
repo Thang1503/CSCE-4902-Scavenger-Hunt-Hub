@@ -88,10 +88,11 @@
 	
 		<div class="search-bar">
 			<input type="text" id="searchInput" placeholder="Search for a scavenger hunt" name="q">
-			<button type="submit" id="searchButton"><img src="glass_icon.png"></button>
+			<button type="submit" id="searchButton"><img src="th.jpg"></button>
 		</div>
 		<button type="button" class="create" onclick="window.location.href = 'createScav.html';">Create a hunt</button>
-		<button type="button" class="account" onclick="window.location.href = 'login.html';"><img src="account.png"></button>
+		<button type="button" class="account" id="accountButton"><img src="account.png"></button>
+		<button type="button" class="sign-out" style="display: none;">Sign Out</button>
 		</div>
 		<script type="module">
 			import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -110,6 +111,7 @@
 			const app = initializeApp(firebaseConfig);
 
 			import {getDatabase, ref, child, get, set, update, remove, onValue} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+			import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 			const db = getDatabase();
 
@@ -125,6 +127,7 @@
 			var inputValue = "";
 			var searchInput = document.getElementById('searchInput');
 			var searchButton = document.getElementById('searchButton');
+			var accountButton = document.getElementById('accountButton');
 
 			async function GetData(){
 				const dbRef = ref(db, 'hunts/');
@@ -151,6 +154,45 @@
 				{ title: "Example3", desc: "Example3 description is right here", rating: 9.0, date: "06/13/2017", filter: "kid-friendly"},
 				{ title: "Example4", desc: "Example4 description is right here", rating: 6.0, date: "12/14/2019", filter: "work" }
 			];*/
+
+			// Function to check if a user is signed in
+			function checkAuthState() {
+				const auth = getAuth();
+    			onAuthStateChanged(auth, function(user) {
+        		if (user) {
+					// User is signed in.
+					document.querySelector('.sign-out').style.display = 'block';
+					console.log("User is signed in:", user);
+				} else {
+					// No user is signed in.
+					// Redirect to the login page
+					window.location.href = 'login.html';
+				}
+				});
+			}
+
+
+			accountButton.addEventListener('click', function() {
+				checkAuthState();
+			});
+
+			// Sign out function
+			function signUserOut() {
+				const auth = getAuth();
+				signOut(auth).then(function() {
+					// Sign-out successful.
+					console.log("User signed out successfully.");
+					alert('User has signed out.');
+				}).catch(function(error) {
+					// An error happened.
+					console.error("Error signing out:", error);
+				});
+			}
+
+			// Call the signOut() function when the sign-out button is clicked
+			document.querySelector('.sign-out').addEventListener('click', function() {
+				signUserOut();
+			});
 
 			const dropdowns = document.querySelectorAll('.dropdown');
 

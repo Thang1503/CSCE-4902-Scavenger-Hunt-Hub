@@ -1,4 +1,5 @@
-const firebaseApp = firebase.initializeApp({
+// Initialize Firebase
+const firebaseConfig = {
     apiKey: "AIzaSyAN5-vaIFOwaz2ar8mFqfDeEGawJU_5OEo",
     authDomain: "team-17-scavenger-hunt-hub.firebaseapp.com",
     projectId: "team-17-scavenger-hunt-hub",
@@ -6,64 +7,51 @@ const firebaseApp = firebase.initializeApp({
     messagingSenderId: "313893582260",
     appId: "1:313893582260:web:141161df49a4b48e06aee1",
     measurementId: "G-7FMS2C0D22"
-});
+};
 
-const db = firebaseApp.firestore();
-const auth = firebaseApp.auth();
+firebase.initializeApp(firebaseConfig);
 
-const register = () => {
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
+// Get references to elements on the page
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
 
-    auth.createUserWithEmailAndPassword(email, password)
-    .then((res) => {
-        console.log(res.user)
-    })
-    .catch((err) => {
-        alert(err.message)
-        console.log(err.code)
-        console.log(err.message)
-    })
+// Function to register a new user
+function register() {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log('User registered:', user);
+            alert('Registration successful. Please sign in.');
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error('Registration error:', errorMessage);
+            alert(errorMessage);
+        });
 }
 
-const login = () => {
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
+// Function to sign in an existing user
+function login() {
+    const email = emailInput.value;
+    const password = passwordInput.value;
 
-    auth.signInWithEmailAndPassword(email, password)
-    .then((res) => {
-        console.log(res.user)
-    })
-    .catch((err) => {
-        alert(err.message)
-        console.log(err.code)
-        console.log(err.message)
-    })
-}
-
-const saveData = () => {
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
-
-    db.collection('users')
-    .add({
-        email: email,
-        password: password
-    })
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
-}
-
-const readData = () => {
-    db.collection('users')
-    .get()
-    .then((data) => {
-        console.log(data.docs.map((item) => {
-            return {...item.data(), id: item.id}
-        }))
-    })
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            console.log('User signed in:', user);
+            alert('Login successful.');
+            window.location.href = 'index.html';
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error('Login error:', errorMessage);
+            alert(errorMessage);
+        });
 }
