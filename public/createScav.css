@@ -98,6 +98,7 @@
   
   .task {
     margin: 0;
+	margin-bottom: 10px;
     border: none;
     border-radius: 25px;
     width: 55%;
@@ -137,7 +138,7 @@
   /* On mouse-over */
   .btn:hover {background: #eee;}
   
-    .dropdown {
+  .dropdown {
   position: relative;
   display: inline-block;
 }
